@@ -1,0 +1,15 @@
+labels:
+  osid: ubuntu
+actions:
+  - pkg:
+      name: openssl
+      remove: true
+
+
+
+
+
+
+
+
+  

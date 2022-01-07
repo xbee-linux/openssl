@@ -1,0 +1,36 @@
+schema-version: 1.0
+
+description: |
+  The OpenSSL package contains management tools and libraries relating to cryptography. 
+  These are useful for providing cryptographic functions to other packages, such as OpenSSH, email applications, and web browsers (for accessing HTTPS sites).
+
+  Installed programs: c_rehash and openssl
+  Installed libraries: libcrypto.so and libssl.so
+  Installed directories: /etc/ssl, /usr/include/openssl, /usr/lib/engines and /usr/share/doc/openssl-1.1.1l
+
+  Short Descriptions
+    c_rehash: is a Perl script that scans all files in a directory and adds symbolic links to their hash values
+    openssl: is a command-line tool for using the various cryptography functions of OpenSSL's crypto library from the shell. It can be used for various functions which are documented in man 1 openssl
+
+    libcrypto.so: implements a wide range of cryptographic algorithms used in various Internet standards. The services provided by this library are used by the OpenSSL implementations of SSL, TLS and S/MIME, and they have also been used to implement OpenSSH, OpenPGP, and other cryptographic standards
+    libssl.so: implements the Transport Layer Security (TLS v1) protocol. It provides a rich API, documentation on which can be found by running man 3 ssl
+
+builder:
+  origin: ./openssl-builder
+  var:
+    version: "{% version %}"
+
+
+var:
+  version: 1.1.1m
+
+
+provision:
+  - copy:
+      builder: openssl
+      todir: /
+  - shell: 
+      cmds:
+        - rm /lib/x86_64-linux-gnu/{libssl.so.1.1,libcrypto.so.1.1}
+        - ldconfig
+

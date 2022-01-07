@@ -1,0 +1,27 @@
+schema-version: 1.0
+
+type: builder
+
+
+const:
+  srcDir: /usr/src
+  exportDir: /opt/openssl
+
+var:
+  version: 1.1.1m
+
+provision:
+  - url:
+      from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .pack.version }}_{{ minorVersion .pack.version }}_{{ patchVersion .pack.version }}.tar.gz
+      todir: "{% srcDir %}"
+
+build:
+  - shell:
+      cmds:
+        - ./config
+        - make
+        - make install DESTDIR={% exportDir %}
+        - rm "{% exportDir %}"/usr/local/lib/*.a
+      directory: "{% srcDir %}/openssl-OpenSSL_{{ majorVersion .pack.version }}_{{ minorVersion .pack.version }}_{{ patchVersion .pack.version }}"
+  - export: "{% exportDir %}"
+
