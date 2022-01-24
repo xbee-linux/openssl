@@ -15,11 +15,7 @@ description: |
     libcrypto.so: implements a wide range of cryptographic algorithms used in various Internet standards. The services provided by this library are used by the OpenSSL implementations of SSL, TLS and S/MIME, and they have also been used to implement OpenSSH, OpenPGP, and other cryptographic standards
     libssl.so: implements the Transport Layer Security (TLS v1) protocol. It provides a rich API, documentation on which can be found by running man 3 ssl
 
-builder:
-  origin: ./openssl-builder
-  var:
-    version: "{% version %}"
-
+builder: ./openssl-builder
 
 var:
   version: 1.1.1m
