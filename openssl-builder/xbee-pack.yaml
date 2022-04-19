@@ -4,10 +4,14 @@ type: builder
 
 dependency: zlib
 
+in:
+  version:
+
 provision:
   - url:
       from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .pack.version }}_{{ minorVersion .pack.version }}_{{ patchVersion .pack.version }}.tar.gz
       todir: "{% xbeeSrc %}"
+
 
 build:
   - shell:
