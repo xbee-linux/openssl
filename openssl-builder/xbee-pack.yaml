@@ -4,13 +4,13 @@ type: builder
 
 dependency: zlib
 
-in:
+var:
   version:
 
 provision:
   - url:
-      from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .pack.version }}_{{ minorVersion .pack.version }}_{{ patchVersion .pack.version }}.tar.gz
-      todir: "{% xbeeSrc %}"
+      from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}.tar.gz
+      todir: "{{ .xbeeSrc }}"
 
 
 build:
@@ -20,9 +20,9 @@ build:
         - make
 #        - make test
         - sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-        - make MANSUFFIX=ssl install DESTDIR={% xbeeOut %}
-        - mv -v {% xbeeOut %}/usr/share/doc/openssl {% xbeeOut %}/usr/share/doc/openssl-{% version %}
-#        - cp -vfr doc/* {% xbeeOut %}/usr/share/doc/openssl-{% version %}
-      directory: "{% xbeeSrc %}/openssl-OpenSSL_{{ majorVersion .pack.version }}_{{ minorVersion .pack.version }}_{{ patchVersion .pack.version }}"
+        - make MANSUFFIX=ssl install DESTDIR={{ .xbeeOut }}
+        - mv -v {{ .xbeeOut }}/usr/share/doc/openssl {{ .xbeeOut }}/usr/share/doc/openssl-{{ .version }}
+#        - cp -vfr doc/* {{ .xbeeOut }}/usr/share/doc/openssl-{{ .version }}
+      directory: "{{ .xbeeSrc }}/openssl-OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}"
 
 

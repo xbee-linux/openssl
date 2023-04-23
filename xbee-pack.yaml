@@ -17,7 +17,7 @@ description: |
 
 dependency: ./openssl-builder
 
-in:
+var:
   version: 1.1.1m
 
 
