@@ -10,7 +10,7 @@ var:
 provision:
   - url:
       from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}.tar.gz
-      todir: "{{ .xbeeSrc }}"
+      todir: "{{ .xbee.src }}"
 
 
 build:
@@ -20,9 +20,9 @@ build:
         - make
 #        - make test
         - sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-        - make MANSUFFIX=ssl install DESTDIR={{ .xbeeOut }}
-        - mv -v {{ .xbeeOut }}/usr/share/doc/openssl {{ .xbeeOut }}/usr/share/doc/openssl-{{ .version }}
-#        - cp -vfr doc/* {{ .xbeeOut }}/usr/share/doc/openssl-{{ .version }}
-      directory: "{{ .xbeeSrc }}/openssl-OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}"
+        - make MANSUFFIX=ssl install DESTDIR={{ .xbee.out }}
+        - mv -v {{ .xbee.out }}/usr/share/doc/openssl {{ .xbee.out }}/usr/share/doc/openssl-{{ .version }}
+#        - cp -vfr doc/* {{ .xbee.out }}/usr/share/doc/openssl-{{ .version }}
+      directory: "{{ .xbee.src }}/openssl-OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}"
 
 
