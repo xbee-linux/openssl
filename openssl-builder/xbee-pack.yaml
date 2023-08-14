@@ -8,9 +8,7 @@ var:
   version:
 
 provision:
-  - url:
-      from: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}.tar.gz
-      todir: "{{ .xbee.src }}"
+  url: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}.tar.gz
 
 
 build:
