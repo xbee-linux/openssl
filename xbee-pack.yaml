@@ -24,6 +24,6 @@ var:
 provision:
   - shell: 
       cmds:
-        - rm /lib/x86_64-linux-gnu/{libssl.so.1.1,libcrypto.so.1.1}
+        - rm -f /lib/x86_64-linux-gnu/{libssl.so.1.1,libcrypto.so.1.1}
         - ldconfig
 
