@@ -5,10 +5,11 @@ type: builder
 builder: zlib
 
 var:
-  version:
+  xbee:
+    version:
 
 provision:
-  url: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}.tar.gz
+  url: https://github.com/openssl/openssl/archive/refs/tags/OpenSSL_{{ majorVersion .xbee.version }}_{{ minorVersion .xbee.version }}_{{ patchVersion .xbee.version }}.tar.gz
 
 
 build:
@@ -19,8 +20,8 @@ build:
 #        - make test
         - sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
         - make MANSUFFIX=ssl install DESTDIR={{ .xbee.out }}
-        - mv -v {{ .xbee.out }}/usr/share/doc/openssl {{ .xbee.out }}/usr/share/doc/openssl-{{ .version }}
-#        - cp -vfr doc/* {{ .xbee.out }}/usr/share/doc/openssl-{{ .version }}
-      directory: "{{ .xbee.src }}/openssl-OpenSSL_{{ majorVersion .version }}_{{ minorVersion .version }}_{{ patchVersion .version }}"
+        - mv -v {{ .xbee.out }}/usr/share/doc/openssl {{ .xbee.out }}/usr/share/doc/openssl-{{ .xbee.version }}
+#        - cp -vfr doc/* {{ .xbee.out }}/usr/share/doc/openssl-{{ .xbee.version }}
+      directory: "{{ .xbee.src }}/openssl-OpenSSL_{{ majorVersion .xbee.version }}_{{ minorVersion .xbee.version }}_{{ patchVersion .xbee.version }}"
 
 
