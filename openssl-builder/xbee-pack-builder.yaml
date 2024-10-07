@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 builder: zlib
 
 var:
